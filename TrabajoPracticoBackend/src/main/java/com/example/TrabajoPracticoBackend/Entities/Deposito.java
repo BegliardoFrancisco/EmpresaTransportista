@@ -1,4 +1,4 @@
-package com.example.TrabajoPracticoBackend.entities;
+package com.example.TrabajoPracticoBackend.Entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -9,20 +9,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "ciudad")
+@Table(name = "deposito")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ciudad {
+public class Deposito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre de la ciudad no puede estar vacío")
-    @Size(max = 100, message = "El nombre de la ciudad no puede exceder los 100 caracteres")
-    @Column(name = "nombre", length = 100, nullable = false)
-    private String nombre;
+    @NotBlank(message = "La dirección no puede estar vacía")
+    @Size(max = 255, message = "La dirección no puede exceder los 255 caracteres")
+    @Column(name = "direccion", length = 255, nullable = false)
+    private String direccion;
 
     @NotNull(message = "La latitud no puede ser nula")
     @Column(name = "latitud", nullable = false)
@@ -31,4 +31,9 @@ public class Ciudad {
     @NotNull(message = "La longitud no puede ser nula")
     @Column(name = "longitud", nullable = false)
     private Double longitud;
+
+    @NotNull(message = "La ciudad asociada no puede ser nula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ciudad_id", nullable = false)
+    private Ciudad ciudad;
 }
