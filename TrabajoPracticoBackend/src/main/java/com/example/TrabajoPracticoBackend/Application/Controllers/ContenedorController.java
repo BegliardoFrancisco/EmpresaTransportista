@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.TrabajoPracticoBackend.Application.Requests.ActualizaEstadoContenedorRequest;
-import com.example.TrabajoPracticoBackend.Application.Requests.ActualizarContenedorRequest;
 import com.example.TrabajoPracticoBackend.Entities.Contenedor;
 import com.example.TrabajoPracticoBackend.Entities.Contenedor.Estados;
 import com.example.TrabajoPracticoBackend.Services.ContenedorService;
