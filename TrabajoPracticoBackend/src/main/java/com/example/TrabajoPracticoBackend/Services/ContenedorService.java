@@ -1,5 +1,7 @@
 package com.example.TrabajoPracticoBackend.Services;
 
+import java.lang.System.Logger.Level;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class ContenedorService {
         return contenedorRepository.save(contenedor);
     }
 
-    public Contenedor updateContenedor(Long id, Estados estado) {
+    public Contenedor updateEstadoContenedor(Long id, Estados estado) {
         
         Contenedor existingContenedor = contenedorRepository
         .findById(id).orElseThrow(() -> 
@@ -35,6 +37,10 @@ public class ContenedorService {
 
     public Contenedor getContenedorById(Long id) {
         return contenedorRepository.findById(id).orElse(null);
+    }
+
+    public List<Contenedor> getall() {
+        return contenedorRepository.findAll();
     }
 
     public void deleteContenedor(Long id) {
