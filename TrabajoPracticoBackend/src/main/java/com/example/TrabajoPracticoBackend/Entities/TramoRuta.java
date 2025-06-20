@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+import io.micrometer.common.lang.Nullable;
+
+
 @Entity
 @Table(name = "tramo_ruta")
 @Data
@@ -33,24 +36,26 @@ public class TramoRuta {
     private TipoTramo tipoTramo;
 
     @NotNull(message = "La ciudad de origen del tramo no puede ser nula")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ciudad_origen_id", nullable = false)
-    private Ciudad ciudadOrigen;
+    @Column(name = "ciudad_origen_id", nullable = false)
+    private long ciudadOrigen;
 
     @NotNull(message = "La ciudad de destino del tramo no puede ser nula")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ciudad_destino_id", nullable = false)
-    private Ciudad ciudadDestino;
+    @Column(name = "ciudad_destino_id", nullable = false)
+    private long ciudadDestino;
 
+    @Nullable
     @Column(name = "fecha_estimada_salida")
     private LocalDateTime fechaEstimadaSalida;
 
+    @Nullable
     @Column(name = "fecha_estimada_llegada")
     private LocalDateTime fechaEstimadaLlegada;
 
+    @Nullable
     @Column(name = "fecha_real_salida")
     private LocalDateTime fechaRealSalida;
 
+    @Nullable
     @Column(name = "fecha_real_llegada")
     private LocalDateTime fechaRealLlegada;
 

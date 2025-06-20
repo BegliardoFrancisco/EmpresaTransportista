@@ -1,11 +1,12 @@
 package com.example.TrabajoPracticoBackend.Entities;
-
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// ...código existente...
 @Entity
 @Table(name = "solicitud")
 @Data
@@ -23,24 +24,19 @@ public class Solicitud {
     private Contenedor contenedor;
 
     @NotNull(message = "La ciudad de origen no puede ser nula")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ciudad_origen_id", nullable = false)
-    private Ciudad ciudadOrigen;
+    @Column(name = "ciudad_origen_id", nullable = false)
+    private Long ciudadOrigenId;
 
     @NotNull(message = "La ciudad de destino no puede ser nula")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ciudad_destino_id", nullable = false)
-    private Ciudad ciudadDestino;
+    @Column(name = "ciudad_destino_id", nullable = false)
+    private Long ciudadDestinoId;
 
     @NotNull(message = "El depósito no puede ser nulo")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "deposito_id", nullable = false)
-    private Deposito deposito;
+    @Column(name = "deposito_id", nullable = false)
+    private Long depositoId;
 
-    @NotNull(message = "El camión no puede ser nulo")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "camion_id", nullable = false)
-    private Camion camion;
+    @Column(name = "camion_id", nullable = false)
+    private Long camionId;
 
     @Column(name = "costo_estimado")
     private Double costoEstimado;

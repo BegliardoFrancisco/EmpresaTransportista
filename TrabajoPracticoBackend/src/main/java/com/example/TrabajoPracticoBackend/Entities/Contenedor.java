@@ -27,11 +27,18 @@ public class Contenedor {
 
     @NotNull(message = "El estado no puede ser nulo")
     @Column(name = "estado", length = 50, nullable = false)
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private Estados estado;
 
     @NotNull(message = "El cliente asociado no puede ser nulo")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+    public enum Estados {
+        RETIRADO_DE_ORIGEN,
+        ENTREGADO_A_DEPÓSITO,
+        RETIRADO_DE_DEPÓSITO,
+        ENTREGADO_EN_DEPÓSITO
+    }
 }
