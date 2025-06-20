@@ -13,10 +13,10 @@ import com.example.TrabajoPracticoBackend.Entities.Solicitud;
 public interface SolicitudRepository extends JpaRepository<Solicitud, Long> {
 
     // CONSULTAR SOLICITUDES DEL CLIENTE
-    @Query("SELECT s FROM Solicitud s JOIN Contenedor c ON s.contenedor.id = c.id WHERE c.cliente_id = :id")
+    @Query("SELECT s FROM Solicitud s JOIN s.contenedor c WHERE c.cliente.id = :id")
     List<Solicitud> findSolicitudByClienteId(@Param("id") Long clienteId);
 
     // CONSULTAR SOLICITUD DEL CLIENTE
-    @Query("SELECT s FROM Solicitud s JOIN Contenedor c ON s.contenedor.id = c.id WHERE s.id LIKE :Sid AND c.cliente_id = :Cid")
-    Solicitud findSolicitudDeClientePorId(@Param("Sid") Long solicitudId, @Param("Cid") Long clienteId);
+    @Query("SELECT s FROM Solicitud s JOIN Contenedor c ON s.contenedor.id = c.id WHERE c.cliente.id = :Cid")
+    Solicitud findSolicitudDeClientePorId(@Param("Cid") Long clienteId);
 }   

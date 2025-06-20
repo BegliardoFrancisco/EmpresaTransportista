@@ -1,6 +1,5 @@
 package com.example.TrabajoPracticoBackend.Services;
 
-import java.lang.System.Logger.Level;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,11 +19,11 @@ public class ContenedorService {
     private ContenedorRepository contenedorRepository;
 
 
-    public Contenedor addContenedor(Contenedor contenedor) {
+    public Contenedor AgregarContenedor(Contenedor contenedor) {
         return contenedorRepository.save(contenedor);
     }
 
-    public Contenedor updateEstadoContenedor(Long id, Estados estado) {
+    public Contenedor ActualizarEstadoContenedor(Long id, Estados estado) {
         
         Contenedor existingContenedor = contenedorRepository
         .findById(id).orElseThrow(() -> 
@@ -35,15 +34,23 @@ public class ContenedorService {
 
     }
 
-    public Contenedor getContenedorById(Long id) {
+    public Contenedor ObtenerContenedorPorId(Long id) {
         return contenedorRepository.findById(id).orElse(null);
     }
 
-    public List<Contenedor> getall() {
+    public List<Contenedor> ObtenerTodos() {
         return contenedorRepository.findAll();
     }
 
-    public void deleteContenedor(Long id) {
+    public List<Contenedor> ObtenerContenedoresDelCliente(Long clienteId) {
+        return contenedorRepository.findByClienteId(clienteId);
+    }
+
+    public List<Contenedor> ObtenerContenedoresPendientes() {
+        return contenedorRepository.findContenedorPendiente();
+    }
+
+    public void EliminarContenedorPorId(Long id) {
         contenedorRepository.deleteById(id);
     }
 
